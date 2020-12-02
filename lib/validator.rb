@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# The app
+# The validator
 class Validator
   attr_reader :number
 

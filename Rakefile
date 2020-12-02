@@ -3,7 +3,7 @@ require 'rake/testtask'
 require 'rubocop/rake_task'
 
 RuboCop::RakeTask.new(:rubocop) do |task|
-  task.patterns = ['lib/**/*.rb', 'test/**/*.rb']
+  task.patterns = ['extensions/**/*.rb', 'lib/**/*.rb', 'test/**/*.rb']
   task.fail_on_error = false
 end
 

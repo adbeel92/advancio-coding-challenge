@@ -11,7 +11,7 @@ class Scanner
 
   def call
     file_lines.each_value do |value|
-      @number += numbers_mapping.key(value) || ''
+      @number += numbers_mapping.key(value) || '?'
     end
   end
 

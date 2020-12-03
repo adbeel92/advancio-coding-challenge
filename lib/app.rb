@@ -2,13 +2,15 @@
 
 require_relative '../lib/scanner'
 require_relative '../lib/reporter'
+require_relative '../lib/calculator_fixer'
 
 # The app
 class App
-  attr_reader :file
+  attr_reader :file, :fixing
 
-  def initialize(file)
+  def initialize(file, fixing: false)
     @file = file
+    @fixing = fixing
   end
 
   def call
@@ -28,10 +30,16 @@ class App
   end
 
   def scanner
-    @scanner ||= Scanner.new(file.read)
+    @scanner ||= Scanner.new(file.read, fixing: fixing)
   end
 
   def reporter
-    @reporter ||= Reporter.new(scanner.number)
+    @reporter ||= Reporter.new(number)
+  end
+
+  def number
+    return scanner.number unless fixing
+
+    CalculatorFixer.new(scanner).call
   end
 end
